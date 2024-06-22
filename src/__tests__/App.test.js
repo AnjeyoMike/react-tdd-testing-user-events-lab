@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+/*import { render, screen } from "@testing-library/react";
 import '@testing-library/jest-dom';
 
 import App from "../App";
@@ -88,4 +88,24 @@ test("checked status of checkboxes changes when user clicks them", () => {
 
 test("a message is displayed when the user clicks the Submit button", () => {
   // your test code here
+});*/
+
+import { render, screen } from "@testing-library/react";
+import App from "../App";
+
+test("displays a newsletter signup form with the correct elements", () => {
+  // Arrange
+  render(<App />);
+
+  // Act
+  const nameInput = screen.getByLabelText("Name:");
+  const emailInput = screen.getByLabelText("Email:");
+  const interestsCheckboxes = screen.getAllByRole("checkbox");
+  const submitButton = screen.getByRole("button", { name: "Submit" });
+
+  // Assert
+  expect(nameInput).toBeInTheDocument();
+  expect(emailInput).toBeInTheDocument();
+  expect(interestsCheckboxes.length).toBeGreaterThan(0);
+  expect(submitButton).toBeInTheDocument();
 });
